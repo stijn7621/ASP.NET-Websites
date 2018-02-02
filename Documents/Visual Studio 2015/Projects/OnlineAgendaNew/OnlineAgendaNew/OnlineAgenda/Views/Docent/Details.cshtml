@@ -1,0 +1,42 @@
+﻿@model OnlineAgenda.Models.TblDocent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TblDocent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Aanhef)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aanhef)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voorletters)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voorletters)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GebruikersId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GebruikersId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Afkorting }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

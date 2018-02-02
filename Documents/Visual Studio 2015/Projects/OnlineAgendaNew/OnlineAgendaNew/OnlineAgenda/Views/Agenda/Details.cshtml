@@ -1,0 +1,74 @@
+﻿@model OnlineAgenda.Models.TblAgendaItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TblAgendaItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumTijd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumTijd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Omschrijving)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Omschrijving)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Soort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForumStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForumStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TblDocent.Aanhef)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblDocent.Aanhef)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TblKlas.Mentor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblKlas.Mentor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TblVak.Vaknaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblVak.Vaknaam)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

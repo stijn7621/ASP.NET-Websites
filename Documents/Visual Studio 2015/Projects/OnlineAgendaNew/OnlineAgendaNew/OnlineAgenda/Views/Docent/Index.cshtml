@@ -1,0 +1,45 @@
+﻿@model IEnumerable<OnlineAgenda.Models.TblDocent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Aanhef)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voorletters)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GebruikersId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aanhef)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voorletters)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GebruikersId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Afkorting }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Afkorting }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Afkorting })
+        </td>
+    </tr>
+}
+
+</table>

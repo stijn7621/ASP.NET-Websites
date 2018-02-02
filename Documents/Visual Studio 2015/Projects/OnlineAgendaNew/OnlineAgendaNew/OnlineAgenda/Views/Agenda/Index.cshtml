@@ -1,0 +1,76 @@
+﻿@model IEnumerable<OnlineAgenda.Models.TblAgendaItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (User.IsInRole("Docent")) {
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumTijd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Omschrijving)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ForumStatus)
+        </th>
+        @if(User.IsInRole("Docent"))
+        {
+            <th>@Html.DisplayNameFor(model => model.Klas)</th>
+        }
+
+@if (User.IsInRole("Student"))
+{
+        <th>
+            @Html.DisplayNameFor(model => model.Docentcode)
+        </th>
+}
+        <th>
+            @Html.DisplayNameFor(model => model.TblVak.Vaknaam)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumTijd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Omschrijving)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ForumStatus)
+        </td>
+        @if(User.IsInRole("Docent"))
+        {
+            <td>@Html.DisplayFor(modelItem => item.Klas)</td>
+        }
+        <td>@Html.DisplayFor(modelItem => item.Docentcode)</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TblVak.Vaknaam)
+        </td>
+        <td>
+            @if (User.IsInRole("Docent")) {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })} |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @if (User.IsInRole("Docent")) {
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) }
+        </td>
+    </tr>
+}
+
+</table>

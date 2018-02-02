@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OnlineAgendaModelStoreContainer" CdmEntityContainer="OnlineAgendaEntities">
+    <EntitySetMapping Name="TblAgendaItems">
+      <EntityTypeMapping TypeName="OnlineAgendaModel.TblAgendaItem">
+        <MappingFragment StoreEntitySet="TblAgendaItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DatumTijd" ColumnName="DatumTijd" />
+          <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+          <ScalarProperty Name="Soort" ColumnName="Soort" />
+          <ScalarProperty Name="VakCode" ColumnName="VakCode" />
+          <ScalarProperty Name="Klas" ColumnName="Klas" />
+          <ScalarProperty Name="Docentcode" ColumnName="Docentcode" />
+          <ScalarProperty Name="ForumStatus" ColumnName="ForumStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblBijlages">
+      <EntityTypeMapping TypeName="OnlineAgendaModel.TblBijlage">
+        <MappingFragment StoreEntitySet="TblBijlage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naam" ColumnName="Naam" />
+          <ScalarProperty Name="Locatie" ColumnName="Locatie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblDocents">
+      <EntityTypeMapping TypeName="OnlineAgendaModel.TblDocent">
+        <MappingFragment StoreEntitySet="TblDocent">
+          <ScalarProperty Name="Afkorting" ColumnName="Afkorting" />
+          <ScalarProperty Name="Aanhef" ColumnName="Aanhef" />
+          <ScalarProperty Name="Voorletters" ColumnName="Voorletters" />
+          <ScalarProperty Name="GebruikersId" ColumnName="GebruikersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblKlas">
+      <EntityTypeMapping TypeName="OnlineAgendaModel.TblKlas">
+        <MappingFragment StoreEntitySet="TblKlas">
+          <ScalarProperty Name="KlasCode" ColumnName="KlasCode" />
+          <ScalarProperty Name="Cohort" ColumnName="Cohort" />
+          <ScalarProperty Name="Mentor" ColumnName="Mentor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPosts">
+      <EntityTypeMapping TypeName="OnlineAgendaModel.tblPost">
+        <MappingFragment StoreEntitySet="tblPost">
+          <ScalarProperty Name="GebruikerId" ColumnName="GebruikerId" />
+          <ScalarProperty Name="AgendaItemId" ColumnName="AgendaItemId" />
+          <ScalarProperty Name="PostDatumTijd" ColumnName="PostDatumTijd" />
+          <ScalarProperty Name="Post" ColumnName="Post" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblStudents">
+      <EntityTypeMapping TypeName="OnlineAgendaModel.TblStudent">
+        <MappingFragment StoreEntitySet="TblStudent">
+          <ScalarProperty Name="StudentNummer" ColumnName="StudentNummer" />
+          <ScalarProperty Name="Geboortedatum" ColumnName="Geboortedatum" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Plaats" ColumnName="Plaats" />
+          <ScalarProperty Name="Klas" ColumnName="Klas" />
+          <ScalarProperty Name="GebruikersId" ColumnName="GebruikersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblVaks">
+      <EntityTypeMapping TypeName="OnlineAgendaModel.TblVak">
+        <MappingFragment StoreEntitySet="TblVak">
+          <ScalarProperty Name="VakCode" ColumnName="VakCode" />
+          <ScalarProperty Name="Vaknaam" ColumnName="Vaknaam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TblAgendaBijlage" TypeName="OnlineAgendaModel.TblAgendaBijlage" StoreEntitySet="TblAgendaBijlage">
+      <EndProperty Name="TblAgendaItem">
+        <ScalarProperty Name="Id" ColumnName="AgendaItemId" />
+      </EndProperty>
+      <EndProperty Name="TblBijlage">
+        <ScalarProperty Name="Id" ColumnName="BijlageId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="OnlineAgendaModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+          <ScalarProperty Name="Tussenvoegsels" ColumnName="Tussenvoegsels" />
+          <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

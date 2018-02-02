@@ -1,0 +1,66 @@
+﻿@model OnlineAgenda.Models.TblStudent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TblStudent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Geboortedatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Geboortedatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Postcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Postcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plaats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plaats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GebruikersId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GebruikersId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TblKlas.Mentor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblKlas.Mentor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentNummer }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineAgendaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TblAgendaItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DatumTijd" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Omschrijving" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soort" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="VakCode" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Klas" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Docentcode" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ForumStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="TblDocent" Relationship="Self.FK_DocentAgendaItem" FromRole="TblAgendaItem" ToRole="TblDocent" />
+    <NavigationProperty Name="TblKlas" Relationship="Self.FK_KlasAgendaItem" FromRole="TblAgendaItem" ToRole="TblKlas" />
+    <NavigationProperty Name="tblPosts" Relationship="Self.FK_Post_TblAgendaItem" FromRole="TblAgendaItem" ToRole="tblPost" />
+    <NavigationProperty Name="TblVak" Relationship="Self.FK_TblAgendaItem_TblVak" FromRole="TblAgendaItem" ToRole="TblVak" />
+    <NavigationProperty Name="TblBijlages" Relationship="Self.TblAgendaBijlage" FromRole="TblAgendaItem" ToRole="TblBijlage" />
+  </EntityType>
+  <EntityType Name="TblBijlage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Locatie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TblAgendaItems" Relationship="Self.TblAgendaBijlage" FromRole="TblBijlage" ToRole="TblAgendaItem" />
+  </EntityType>
+  <EntityType Name="TblDocent">
+    <Key>
+      <PropertyRef Name="Afkorting" />
+    </Key>
+    <Property Name="Afkorting" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Aanhef" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Voorletters" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="GebruikersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TblAgendaItems" Relationship="Self.FK_DocentAgendaItem" FromRole="TblDocent" ToRole="TblAgendaItem" />
+    <NavigationProperty Name="TblKlas" Relationship="Self.FK_DocentKlas" FromRole="TblDocent" ToRole="TblKlas" />
+    <NavigationProperty Name="AspNetUser" Relationship="OnlineAgendaModel.FK_TblDocent_AspNetUsers" FromRole="TblDocent" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="TblKlas">
+    <Key>
+      <PropertyRef Name="KlasCode" />
+    </Key>
+    <Property Name="KlasCode" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Cohort" Type="Int16" Nullable="false" />
+    <Property Name="Mentor" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TblAgendaItems" Relationship="Self.FK_KlasAgendaItem" FromRole="TblKlas" ToRole="TblAgendaItem" />
+    <NavigationProperty Name="TblDocent" Relationship="Self.FK_DocentKlas" FromRole="TblKlas" ToRole="TblDocent" />
+    <NavigationProperty Name="TblStudents" Relationship="Self.FK_KlasStudent" FromRole="TblKlas" ToRole="TblStudent" />
+  </EntityType>
+  <EntityType Name="tblPost">
+    <Key>
+      <PropertyRef Name="GebruikerId" />
+      <PropertyRef Name="AgendaItemId" />
+      <PropertyRef Name="PostDatumTijd" />
+    </Key>
+    <Property Name="GebruikerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AgendaItemId" Type="Int32" Nullable="false" />
+    <Property Name="PostDatumTijd" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TblAgendaItem" Relationship="Self.FK_Post_TblAgendaItem" FromRole="tblPost" ToRole="TblAgendaItem" />
+    <NavigationProperty Name="AspNetUser" Relationship="OnlineAgendaModel.FK_Post_AspNetUsers" FromRole="tblPost" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="TblStudent">
+    <Key>
+      <PropertyRef Name="StudentNummer" />
+    </Key>
+    <Property Name="StudentNummer" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Geboortedatum" Type="DateTime" Precision="3" />
+    <Property Name="Adres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Postcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Plaats" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="Klas" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="GebruikersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TblKlas" Relationship="Self.FK_KlasStudent" FromRole="TblStudent" ToRole="TblKlas" />
+    <NavigationProperty Name="AspNetUser" Relationship="OnlineAgendaModel.FK_TblStudent_AspNetUsers" FromRole="TblStudent" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="TblVak">
+    <Key>
+      <PropertyRef Name="VakCode" />
+    </Key>
+    <Property Name="VakCode" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Vaknaam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TblAgendaItems" Relationship="Self.FK_TblAgendaItem_TblVak" FromRole="TblVak" ToRole="TblAgendaItem" />
+  </EntityType>
+  <Association Name="FK_DocentAgendaItem">
+    <End Role="TblDocent" Type="Self.TblDocent" Multiplicity="1" />
+    <End Role="TblAgendaItem" Type="Self.TblAgendaItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblDocent">
+        <PropertyRef Name="Afkorting" />
+      </Principal>
+      <Dependent Role="TblAgendaItem">
+        <PropertyRef Name="Docentcode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KlasAgendaItem">
+    <End Role="TblKlas" Type="OnlineAgendaModel.TblKlas" Multiplicity="1" />
+    <End Role="TblAgendaItem" Type="Self.TblAgendaItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKlas">
+        <PropertyRef Name="KlasCode" />
+      </Principal>
+      <Dependent Role="TblAgendaItem">
+        <PropertyRef Name="Klas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_TblAgendaItem">
+    <End Role="TblAgendaItem" Type="Self.TblAgendaItem" Multiplicity="1" />
+    <End Role="tblPost" Type="Self.tblPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblAgendaItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblPost">
+        <PropertyRef Name="AgendaItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblAgendaItem_TblVak">
+    <End Role="TblVak" Type="Self.TblVak" Multiplicity="1" />
+    <End Role="TblAgendaItem" Type="Self.TblAgendaItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblVak">
+        <PropertyRef Name="VakCode" />
+      </Principal>
+      <Dependent Role="TblAgendaItem">
+        <PropertyRef Name="VakCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocentKlas">
+    <End Role="TblDocent" Type="Self.TblDocent" Multiplicity="1" />
+    <End Role="TblKlas" Type="OnlineAgendaModel.TblKlas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblDocent">
+        <PropertyRef Name="Afkorting" />
+      </Principal>
+      <Dependent Role="TblKlas">
+        <PropertyRef Name="Mentor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KlasStudent">
+    <End Role="TblKlas" Type="OnlineAgendaModel.TblKlas" Multiplicity="1" />
+    <End Role="TblStudent" Type="Self.TblStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKlas">
+        <PropertyRef Name="KlasCode" />
+      </Principal>
+      <Dependent Role="TblStudent">
+        <PropertyRef Name="Klas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TblAgendaBijlage">
+    <End Role="TblAgendaItem" Type="Self.TblAgendaItem" Multiplicity="*" />
+    <End Role="TblBijlage" Type="Self.TblBijlage" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="OnlineAgendaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TblAgendaItems" EntityType="Self.TblAgendaItem" />
+    <EntitySet Name="TblBijlages" EntityType="Self.TblBijlage" />
+    <EntitySet Name="TblDocents" EntityType="Self.TblDocent" />
+    <EntitySet Name="TblKlas" EntityType="OnlineAgendaModel.TblKlas" />
+    <EntitySet Name="tblPosts" EntityType="Self.tblPost" />
+    <EntitySet Name="TblStudents" EntityType="Self.TblStudent" />
+    <EntitySet Name="TblVaks" EntityType="Self.TblVak" />
+    <AssociationSet Name="FK_DocentAgendaItem" Association="Self.FK_DocentAgendaItem">
+      <End Role="TblDocent" EntitySet="TblDocents" />
+      <End Role="TblAgendaItem" EntitySet="TblAgendaItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KlasAgendaItem" Association="Self.FK_KlasAgendaItem">
+      <End Role="TblKlas" EntitySet="TblKlas" />
+      <End Role="TblAgendaItem" EntitySet="TblAgendaItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_TblAgendaItem" Association="Self.FK_Post_TblAgendaItem">
+      <End Role="TblAgendaItem" EntitySet="TblAgendaItems" />
+      <End Role="tblPost" EntitySet="tblPosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblAgendaItem_TblVak" Association="Self.FK_TblAgendaItem_TblVak">
+      <End Role="TblVak" EntitySet="TblVaks" />
+      <End Role="TblAgendaItem" EntitySet="TblAgendaItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocentKlas" Association="Self.FK_DocentKlas">
+      <End Role="TblDocent" EntitySet="TblDocents" />
+      <End Role="TblKlas" EntitySet="TblKlas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KlasStudent" Association="Self.FK_KlasStudent">
+      <End Role="TblKlas" EntitySet="TblKlas" />
+      <End Role="TblStudent" EntitySet="TblStudents" />
+    </AssociationSet>
+    <AssociationSet Name="TblAgendaBijlage" Association="Self.TblAgendaBijlage">
+      <End Role="TblAgendaItem" EntitySet="TblAgendaItems" />
+      <End Role="TblBijlage" EntitySet="TblBijlages" />
+    </AssociationSet>
+    <EntitySet Name="AspNetUsers" EntityType="OnlineAgendaModel.AspNetUser" />
+    <AssociationSet Name="FK_Post_AspNetUsers" Association="OnlineAgendaModel.FK_Post_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="tblPost" EntitySet="tblPosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblDocent_AspNetUsers" Association="OnlineAgendaModel.FK_TblDocent_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="TblDocent" EntitySet="TblDocents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblStudent_AspNetUsers" Association="OnlineAgendaModel.FK_TblStudent_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="TblStudent" EntitySet="TblStudents" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Tussenvoegsels" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Achternaam" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblPosts" Relationship="OnlineAgendaModel.FK_Post_AspNetUsers" FromRole="AspNetUser" ToRole="tblPost" />
+    <NavigationProperty Name="TblDocents" Relationship="OnlineAgendaModel.FK_TblDocent_AspNetUsers" FromRole="AspNetUser" ToRole="TblDocent" />
+    <NavigationProperty Name="TblStudents" Relationship="OnlineAgendaModel.FK_TblStudent_AspNetUsers" FromRole="AspNetUser" ToRole="TblStudent" />
+  </EntityType>
+  <Association Name="FK_Post_AspNetUsers">
+    <End Type="OnlineAgendaModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="OnlineAgendaModel.tblPost" Role="tblPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblPost">
+        <PropertyRef Name="GebruikerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblDocent_AspNetUsers">
+    <End Type="OnlineAgendaModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="OnlineAgendaModel.TblDocent" Role="TblDocent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TblDocent">
+        <PropertyRef Name="GebruikersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblStudent_AspNetUsers">
+    <End Type="OnlineAgendaModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="OnlineAgendaModel.TblStudent" Role="TblStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TblStudent">
+        <PropertyRef Name="GebruikersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

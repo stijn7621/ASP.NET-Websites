@@ -1,0 +1,63 @@
+﻿@model IEnumerable<OnlineAgenda.Models.TblStudent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Geboortedatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plaats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GebruikersId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TblKlas.Mentor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Geboortedatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Postcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plaats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GebruikersId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TblKlas.Mentor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudentNummer }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StudentNummer }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StudentNummer })
+        </td>
+    </tr>
+}
+
+</table>
