@@ -1,0 +1,194 @@
+﻿body {
+    padding-top: 90px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+span.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+
+.voffset { margin-top: 2px; }
+.voffset1 { margin-top: 5px; }
+.voffset2 { margin-top: 10px; }
+.voffset3 { margin-top: 20px; }
+.voffset4 { margin-top: 40px; }
+.voffset5 { margin-top: 80px; }
+
+/* Bootstrap Overrides */
+.navbar-inverse {
+    background-color: green;
+    border-color: green;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: lightgreen;
+}
+
+.dropdown-menu {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.dropdown-menu > li > a:hover {
+    background: green;
+}
+
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.navbar-brand {
+    font-weight: 700;    
+}
+
+body {
+    font-size: 17px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    font-size: 17px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
+}
+
+
+.btn {
+    font-size: 15px;
+    padding: 0 20px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
+}
+
+/* Page-level styles */
+.matches {
+    list-style: none;
+}
+
+.matches > li {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.matches > li .date {
+    background: green;
+    color: white;
+    text-align: center;
+    width: 60px;
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.matches > li .date .month {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 6px;
+}
+
+    .matches > li .date .day {
+        background: #f7f7f7;
+        color: #333;
+        font-size: 20px;
+        padding: 6px 12px;
+    }
+
+.matches > li .container .details {
+    position: absolute;
+    top: 0;
+    left: 70px;
+}
+
+.matches > li .container .details .match {
+    font-weight: bold;
+    display: block;
+}
+
+    .matches > li .container .details .user {
+        font-size: 14px;
+        display: block;
+    }
+
+    .matches > li .container .details .stadium {
+        font-size: 15px;
+        display: block;
+    }
+
+.matches > li .container .buttons {
+    position: absolute;
+    top: 0;
+    float: left;
+    left: 400px;
+}
+    
+    .matches >li .container .buttons #btnFollow {
+        display: block;
+    }
+
+    .matches >li .container .buttons #btnGoing {
+        display: block;
+        margin-top: 20px;
+    }
+
+
+div.details, div.buttons {
+     display: inline;
+}
+
+#heading {
+    margin-bottom: 40px;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+    background: white;
+    color: green;
+
+}
